@@ -3,7 +3,7 @@ name: Publicar Bússola de Arton no GitHub Pages
 on:
   push:
     branches:
-      - arena/019fd867-rpg-utilidades
+      - main
   workflow_dispatch:
 
 permissions:
