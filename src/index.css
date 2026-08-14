@@ -25,7 +25,9 @@ h1,h2,h3,p,figure{margin-top:0}
 
 /* ---------- cenário de fundo ---------- */
 .scene-bg{position:absolute;inset:0;overflow:hidden;z-index:0}
-.scene-bg img{width:100%;height:100%;object-fit:cover;object-position:center 38%;animation:kenburns 52s ease-in-out infinite alternate}
+.scene-bg img,.scene-bg video{width:100%;height:100%;object-fit:cover;object-position:center 38%;display:block}
+.scene-bg video{opacity:.96}
+.scene-bg img{animation:kenburns 52s ease-in-out infinite alternate}
 .scene-bg--soft img{animation-duration:75s;filter:saturate(.75) brightness(.5) blur(2px);opacity:.5}
 .scene-shade{position:absolute;inset:0;z-index:1;pointer-events:none;
   background:
@@ -108,7 +110,12 @@ h1,h2,h3,p,figure{margin-top:0}
 .veil-close:hover{background:rgba(108,62,168,.9)}
 .about-grid{display:grid;grid-template-columns:minmax(220px,300px) 1fr;gap:clamp(1.4rem,3vw,2.2rem);align-items:start}
 .about-figure{margin:0}
-.about-figure img{width:100%;display:block;aspect-ratio:1/1.06;object-fit:cover;border:1px solid rgba(233,188,99,.5);clip-path:var(--bevel);filter:drop-shadow(0 12px 30px rgba(0,0,0,.5))}
+.about-figure img{width:100%;display:block;aspect-ratio:16/9.6;object-fit:cover;object-position:center 30%;border:1px solid rgba(233,188,99,.5);clip-path:var(--bevel);filter:drop-shadow(0 12px 30px rgba(0,0,0,.5))}
+.about-toggle{margin-top:.65rem;width:100%;padding:.5rem .8rem;font:700 .68rem var(--font-title);letter-spacing:.14em;text-transform:uppercase;color:var(--gold-hi);background:linear-gradient(155deg,rgba(74,42,130,.85),rgba(31,18,58,.9));border:1px solid rgba(233,188,99,.45);clip-path:polygon(9px 0,100% 0,100% calc(100% - 9px),calc(100% - 9px) 100%,0 100%,0 9px);transition:.2s}
+.about-toggle:hover{border-color:var(--gold-hi);filter:brightness(1.15)}
+.cena-figure{margin:1rem 0 0}
+.cena-figure video{width:100%;display:block;aspect-ratio:16/9;background:#0c0716;border:1px solid rgba(233,188,99,.5);clip-path:var(--bevel)}
+.cena-figure figcaption{margin-top:.6rem;text-align:center;font:italic 500 .95rem var(--font-body);color:var(--lilac-dim)}
 .about-figure figcaption{margin-top:.55rem;text-align:center;font:italic 500 .92rem var(--font-body);color:var(--lilac-dim)}
 .about-note{font-style:italic;color:var(--lilac)!important}
 .veil-actions{display:flex;gap:.8rem;margin-top:1.4rem;flex-wrap:wrap}

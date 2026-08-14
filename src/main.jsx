@@ -13,8 +13,10 @@ import '@fontsource/cormorant-garamond/600.css'
 import '@fontsource/cormorant-garamond/600-italic.css'
 import './index.css'
 
-const bgUrl='./oraculo-bg.jpg'
-const figuraUrl='./oraculo-figura.jpg'
+const loopUrl='./oraculo-loop.mp4'
+const posterUrl='./oraculo-poster.jpg'
+const menuUrl='./oraculo-menu.jpg'
+const cenaUrl='./oraculo-cena.mp4'
 
 const traits=['melee','ranged','magic','faith','support','stealth','nature','craft','lead','companion','fury','precision','simple','complex','social','defense','unarmed','dark','sea','tactics']
 const mergeScores=answers=>answers.reduce((all,answer)=>{if(answer) Object.entries(answer.score).forEach(([key,value])=>all[key]=(all[key]||0)+value);return all},{})
@@ -41,7 +43,9 @@ const MOTES=Array.from({length:18},(_,i)=>({left:`${(i*53)%97+1}%`,top:`${(i*37)
 function SamarBadge({variant='dark'}){return <div className={`samar-badge ${variant}`}><svg viewBox="0 0 82 52" aria-hidden="true"><g fill="#c9b080"><circle cx="10" cy="10" r="5"/><circle cx="72" cy="10" r="5"/><circle cx="10" cy="42" r="5"/><circle cx="72" cy="42" r="5"/></g><g fill="none" stroke="#c7b79a" strokeWidth="3"><path d="M10 3v14M3 10h14M72 3v14M65 10h14M10 35v14M3 42h14M72 35v14M65 42h14"/></g><rect x="19" y="8" width="44" height="36" rx="4" fill="url(#screen)" stroke="#c7b79a" strokeWidth="3"/><text x="41" y="34" textAnchor="middle" fill="#ffe44d" fontSize="25" fontFamily="Georgia" fontWeight="bold">C</text><defs><radialGradient id="screen"><stop stopColor="#6eff8a"/><stop offset="1" stopColor="#0f8a2e"/></radialGradient></defs></svg><span>CRIADO POR SAMAR</span></div>}
 
 function Ornament(){return <div className="ornament" aria-hidden="true"><i/><b/><i/></div>}
-function SceneBg({soft}){return <><div className={`scene-bg ${soft?'scene-bg--soft':''}`} aria-hidden="true"><img src={bgUrl} alt=""/></div><div className="scene-shade" aria-hidden="true"/></>}
+function SceneBg({soft}){return <>{soft
+ ?<div className="scene-bg scene-bg--soft" aria-hidden="true"><img src={posterUrl} alt=""/></div>
+ :<div className="scene-bg" aria-hidden="true"><video src={loopUrl} poster={posterUrl} autoPlay muted loop playsInline preload="auto"/></div>}<div className="scene-shade" aria-hidden="true"/></>}
 
 function Veil({label,close,wide,children}){
  return <div className="veil" role="dialog" aria-modal="true" aria-label={label} onClick={event=>{if(event.target===event.currentTarget) close()}}>
@@ -51,10 +55,10 @@ function Veil({label,close,wide,children}){
   </div></div>
  </div>
 }
-function AboutVeil({close,start}){
+function AboutVeil({close,start,watch}){
  return <Veil label="Sobre a Bússola de Arton" close={close}>
   <div className="about-grid">
-   <figure className="about-figure"><img src={figuraUrl} alt="O oráculo alado meditando entre as torres flutuantes de Vectora"/><figcaption>O oráculo vigia os caminhos de Arton</figcaption></figure>
+   <figure className="about-figure"><img src={menuUrl} alt="A visão original do Oráculo de Vectora"/><figcaption>A visão original do oráculo</figcaption><button className="about-toggle" onClick={watch}>Assistir à cena original</button></figure>
    <div className="about-copy">
     <div className="eyebrow"><BookOpen size={13}/> SOBRE A BÚSSOLA</div>
     <h3>O oráculo que aponta o seu caminho</h3>
@@ -65,6 +69,14 @@ function AboutVeil({close,start}){
     <div className="veil-actions"><button className="primary" onClick={start}>Iniciar jornada <ArrowRight size={17}/></button><button className="ghost" onClick={close}>Voltar ao oráculo</button></div>
    </div>
   </div>
+ </Veil>
+}
+function CenaVeil({close}){
+ return <Veil label="A cena original do Oráculo" close={close} wide>
+  <div className="eyebrow"><Sparkles size={13}/> A CENA ORIGINAL</div>
+  <h3 className="grimoire-title">O Oráculo de Vectora em movimento</h3>
+  <Ornament/>
+  <figure className="cena-figure"><video src={cenaUrl} controls autoPlay loop playsInline/><figcaption>O menu original que inspirou esta bússola — arte e animação do Oráculo de Vectora</figcaption></figure>
  </Veil>
 }
 function ClassesVeil({close,start}){
@@ -117,8 +129,9 @@ function Intro({start}){
 
   <footer className="intro-footer"><SamarBadge variant="light"/><span>Uma jornada de escolhas, não de respostas prontas.</span></footer>
 
-  {panel==='about'&&<AboutVeil close={()=>setPanel(null)} start={start}/>}
+  {panel==='about'&&<AboutVeil close={()=>setPanel(null)} start={start} watch={()=>setPanel('cena')}/>}
   {panel==='classes'&&<ClassesVeil close={()=>setPanel(null)} start={start}/>}
+  {panel==='cena'&&<CenaVeil close={()=>setPanel(null)}/>}
  </main>
 }
 
