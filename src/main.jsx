@@ -23,7 +23,7 @@ const mergeScores=answers=>answers.reduce((all,answer)=>{if(answer) Object.entri
 const dot=(a,b)=>traits.reduce((sum,t)=>sum+(a[t]||0)*(b[t]||0),0)
 const cosine=(a,b)=>{const aa=Math.sqrt(dot(a,a)),bb=Math.sqrt(dot(b,b));return aa&&bb?dot(a,b)/(aa*bb):0}
 const affinity=(raw,top)=>Math.min(97,Math.max(68,Math.round(raw/top*96)))
-const incompatible={samurai:['cavaleiro'],cavaleiro:['samurai']}
+const incompatible={samurai:['cavaleiro'],cavaleiro:['samurai'],necromante:['paladino','clerigo','santo','frade'],paladino:['necromante'],clerigo:['necromante','usurpador'],santo:['necromante'],frade:['necromante'],usurpador:['clerigo']}
 function pickResults(answers){
  const user=mergeScores(answers); const ranked=classes.map(profile=>({...profile,raw:dot(user,profile.score)})).sort((a,b)=>b.raw-a.raw)
  const top=ranked[0], candidates=ranked.slice(1,7).filter(x=>!(incompatible[top.id]||[]).includes(x.id));
@@ -64,7 +64,7 @@ function AboutVeil({close,start,watch}){
     <h3>O oráculo que aponta o seu caminho</h3>
     <Ornament/>
     <p>A Bússola de Arton é um oráculo de <b>doze escolhas</b>. Cada resposta acende traços do seu jeito de jogar — aço, fé, astúcia, mistério — como estrelas num céu particular.</p>
-    <p>Ao final, o oráculo compara a sua constelação com as <b>22 classes e variantes de Tormenta20</b> e revela as duas rotas de maior afinidade, com pontos fortes e cuidados para a sua mesa.</p>
+    <p>Ao final, o oráculo compara a sua constelação com as <b>43 classes e variantes de Tormenta20</b> e revela as duas rotas de maior afinidade, com pontos fortes e cuidados para a sua mesa.</p>
     <p className="about-note">É um norte, não uma sentença: a palavra final pertence à sua lenda.</p>
     <div className="veil-actions"><button className="primary" onClick={start}>Iniciar jornada <ArrowRight size={17}/></button><button className="ghost" onClick={close}>Voltar ao oráculo</button></div>
    </div>
@@ -82,7 +82,7 @@ function CenaVeil({close}){
 function ClassesVeil({close,start}){
  return <Veil label="As classes de Arton" close={close} wide>
   <div className="eyebrow"><Swords size={13}/> GRIMÓRIO DE CAMINHOS</div>
-  <h3 className="grimoire-title">Os 22 caminhos de Arton</h3>
+  <h3 className="grimoire-title">Os 43 caminhos de Arton</h3>
   <Ornament/>
   <p className="grimoire-lead">Classes do Jogo do Ano, de Heróis de Arton e da Dragão Brasil — cada retrato é uma porta esperando uma escolha.</p>
   <div className="grimoire">
@@ -113,7 +113,7 @@ function Intro({start}){
   <div className="menu-col">
    <nav className="oracle-menu" aria-label="Jornada">
     <button className="omen" onClick={()=>setPanel('about')}><span className="omen-gem"><BookOpen size={18}/></span><span className="omen-text"><b>Sobre a bússola</b><small>Como o oráculo guia você</small></span></button>
-    <button className="omen" onClick={()=>setPanel('classes')}><span className="omen-gem"><Swords size={18}/></span><span className="omen-text"><b>Conheça as classes</b><small>Os 22 caminhos de Arton</small></span></button>
+    <button className="omen" onClick={()=>setPanel('classes')}><span className="omen-gem"><Swords size={18}/></span><span className="omen-text"><b>Conheça as classes</b><small>Os 43 caminhos de Arton</small></span></button>
    </nav>
    <div className="time-badge"><Sparkles size={14}/> 12 escolhas · cerca de 4 min</div>
   </div>
