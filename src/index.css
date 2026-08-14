@@ -38,7 +38,7 @@ h1,h2,h3,p,figure{margin-top:0}
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes fade-quote{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 @keyframes mote{0%{transform:translateY(14vh) scale(.5);opacity:0}12%{opacity:.9}85%{opacity:.35}100%{transform:translateY(-18vh) scale(1.05);opacity:0}}
-@keyframes omen-glow{0%,100%{box-shadow:0 0 18px rgba(164,94,232,.28),0 6px 22px rgba(0,0,0,.45)}50%{box-shadow:0 0 34px rgba(232,121,249,.5),0 6px 22px rgba(0,0,0,.45)}}
+@keyframes banner-glow{0%,100%{filter:drop-shadow(0 8px 26px rgba(0,0,0,.55)) drop-shadow(0 0 10px rgba(233,188,99,.25))}50%{filter:drop-shadow(0 10px 30px rgba(0,0,0,.55)) drop-shadow(0 0 32px rgba(232,121,249,.6))}}
 
 /* ---------- adornos ---------- */
 .ornament{display:flex;align-items:center;gap:.6rem;width:min(320px,52vw);margin:.65rem auto}
@@ -70,12 +70,9 @@ h1,h2,h3,p,figure{margin-top:0}
 .omen:before{content:"";position:absolute;inset:1.5px;clip-path:var(--bevel);background:linear-gradient(155deg,rgba(52,32,94,.96),rgba(24,14,46,.97) 55%,rgba(31,18,58,.96));z-index:0;transition:background .22s ease}
 .omen>*{position:relative;z-index:1}
 .omen:hover{transform:translateX(7px);filter:brightness(1.12)}
-.omen--primary{animation:omen-glow 2.8s ease-in-out infinite}
-.omen--primary:before{background:linear-gradient(155deg,rgba(108,62,168,.96),rgba(57,32,104,.97) 55%,rgba(74,42,130,.96))}
 .omen-gem{width:44px;height:44px;flex:none;margin:.72rem 0 .72rem .95rem;display:grid;place-items:center;color:var(--gold-hi);background:radial-gradient(circle at 50% 32%,#7a4ab0 0%,#43236f 68%,#2c1648 100%);clip-path:polygon(30% 0,70% 0,100% 30%,100% 70%,70% 100%,30% 100%,0 70%,0 30%);box-shadow:inset 0 0 10px rgba(232,121,249,.45)}
 .omen-text{padding-right:1.1rem;display:block}
 .omen-text b{display:block;font:700 .95rem var(--font-title);letter-spacing:.14em;text-transform:uppercase;color:var(--ink);text-shadow:0 2px 8px rgba(0,0,0,.5)}
-.omen--primary .omen-text b{color:#fff3cf}
 .omen-text small{display:block;font:500 .95rem var(--font-body);color:var(--lilac);margin-top:.1rem}
 .time-badge{width:max-content;max-width:100%;border:1px solid rgba(233,188,99,.35);padding:.45rem .8rem;color:#e6d3f8;background:rgba(22,13,43,.55);backdrop-filter:blur(6px);font:600 .72rem var(--font-title);letter-spacing:.14em;display:flex;gap:.5rem;align-items:center;clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px)}
 .time-badge svg{color:var(--gold)}
@@ -86,8 +83,12 @@ h1,h2,h3,p,figure{margin-top:0}
 .wisdom blockquote{font:italic 500 1.08rem/1.45 var(--font-body);color:#efe2ff;margin:0 0 .35rem;animation:fade-quote .9s ease}
 .wisdom .ornament{width:min(150px,70%);margin:.35rem auto 0}
 
-.legend-banner{position:absolute;z-index:6;left:50%;bottom:4.6rem;padding:1px;clip-path:var(--bevel-banner);background:var(--frame-gradient);filter:drop-shadow(0 8px 26px rgba(0,0,0,.55))}
-.legend-banner span{display:block;clip-path:var(--bevel-banner);background:linear-gradient(180deg,rgba(54,32,99,.97),rgba(26,15,48,.98));padding:.85rem 3.4rem;font:700 .92rem var(--font-title);letter-spacing:.34em;text-transform:uppercase;color:var(--gold-hi);text-shadow:0 0 18px rgba(233,188,99,.45);white-space:nowrap}
+.legend-banner{position:absolute;z-index:6;left:50%;transform:translateX(-50%);bottom:4.6rem;padding:1px;border:0;clip-path:var(--bevel-banner);background:var(--frame-gradient);animation:banner-glow 2.8s ease-in-out infinite;transition:transform .22s ease}
+.legend-cta:hover,.legend-cta:focus-visible{transform:translateX(-50%) translateY(-3px) scale(1.045)}
+.legend-banner span{display:flex;align-items:center;gap:.75rem;clip-path:var(--bevel-banner);background:linear-gradient(180deg,rgba(54,32,99,.97),rgba(26,15,48,.98));padding:.95rem 3rem;font:700 .96rem var(--font-title);letter-spacing:.3em;text-transform:uppercase;color:var(--gold-hi);text-shadow:0 0 18px rgba(233,188,99,.45);white-space:nowrap;transition:background .22s ease,color .22s ease}
+.legend-banner span svg{flex:none;color:var(--gold);transition:transform .22s ease}
+.legend-cta:hover span,.legend-cta:focus-visible span{background:linear-gradient(180deg,rgba(118,68,182,.97),rgba(52,28,96,.98));color:#fff3cf}
+.legend-cta:hover span svg,.legend-cta:focus-visible span svg{transform:translateX(4px)}
 
 .intro-footer{position:absolute;z-index:6;top:1.5rem;left:2rem;right:2rem;display:flex;align-items:center;justify-content:space-between;color:#b79ad9;font:500 .82rem var(--font-body);letter-spacing:.06em}
 .samar-badge{display:flex;align-items:center;gap:.35rem;width:max-content;padding:.3rem .55rem .3rem .35rem;border:1px solid rgba(201,176,128,.4);border-radius:99px;background:linear-gradient(120deg,rgba(23,16,13,.85),rgba(66,48,30,.6));backdrop-filter:blur(8px);box-shadow:inset 0 1px rgba(255,255,255,.07)}
@@ -219,7 +220,8 @@ h1,h2,h3,p,figure{margin-top:0}
   .crest{margin-top:3.6rem}
   .menu-col{position:static;margin:2.2rem 1.4rem 0;width:min(420px,92vw)}
   .legend-banner{position:static;margin:2rem auto 0;transform:none}
-  .legend-banner span{font-size:.78rem;letter-spacing:.22em;padding:.8rem 2.4rem}
+  .legend-cta:hover,.legend-cta:focus-visible{transform:translateY(-3px) scale(1.04)}
+  .legend-banner span{font-size:.78rem;letter-spacing:.22em;padding:.8rem 2.2rem}
   .intro-shell{overflow:visible;min-height:100dvh;padding-bottom:3.4rem}
   .intro-footer{position:static;margin-top:auto;padding:2.6rem 1.4rem 0;width:100%}
   .intro-footer>span{display:none}
@@ -240,5 +242,5 @@ h1,h2,h3,p,figure{margin-top:0}
   .veil-actions .primary,.veil-actions .ghost{flex:1;justify-content:center}
 }
 @media(prefers-reduced-motion:reduce){
-  .scene-bg img,.motes span,.omen--primary{animation:none!important}
+  .scene-bg img,.motes span,.legend-cta{animation:none!important}
 }
