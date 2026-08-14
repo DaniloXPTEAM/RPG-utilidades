@@ -112,7 +112,6 @@ function Intro({start}){
 
   <div className="menu-col">
    <nav className="oracle-menu" aria-label="Jornada">
-    <button className="omen omen--primary" onClick={start}><span className="omen-gem"><Compass size={19}/></span><span className="omen-text"><b>Iniciar jornada</b><small>Descubra seu destino</small></span></button>
     <button className="omen" onClick={()=>setPanel('about')}><span className="omen-gem"><BookOpen size={18}/></span><span className="omen-text"><b>Sobre a bússola</b><small>Como o oráculo guia você</small></span></button>
     <button className="omen" onClick={()=>setPanel('classes')}><span className="omen-gem"><Swords size={18}/></span><span className="omen-text"><b>Conheça as classes</b><small>Os 22 caminhos de Arton</small></span></button>
    </nav>
@@ -125,7 +124,7 @@ function Intro({start}){
    <Ornament/>
   </aside>
 
-  <div className="legend-banner"><span>Sua lenda começa aqui</span></div>
+  <button type="button" className="legend-banner legend-cta" onClick={start}><span>Sua lenda começa aqui<ArrowRight size={16} aria-hidden="true"/></span></button>
 
   <footer className="intro-footer"><SamarBadge variant="light"/><span>Uma jornada de escolhas, não de respostas prontas.</span></footer>
 
@@ -154,7 +153,7 @@ if(new URLSearchParams(location.search).has('selftest')){
     const wait=ms=>new Promise(r=>setTimeout(r,ms))
     const assert=(cond,msg)=>log.push((cond?'PASS':'FAIL')+' :: '+msg)
     await wait(150)
-    click(btn('Iniciar jornada'));await wait(0)
+    click(btn('Sua lenda começa aqui'));await wait(0)
     for(let i=0;i<12;i++){
       assert($('.question-number')?.textContent.includes(String(i+1).padStart(2,'0')),`pergunta ${i+1} exibida`)
       const choices=$$('.choice-button')
