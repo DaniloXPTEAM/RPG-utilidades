@@ -27,3 +27,43 @@ function ResultCard({profile,main}){return <article className={`result-card ${ma
 function Results({answers,redo,back}){const {top,second}=useMemo(()=>pickResults(answers),[answers]);return <main className="results-shell"><header className="result-header"><div className="eyebrow"><Compass size={15}/> SUA BÚSSOLA APONTA PARA</div><h1>Um caminho <em>feito para você.</em></h1><p>Suas escolhas desenharam duas rotas coerentes para sua próxima aventura.</p></header><section className="results-list"><ResultCard profile={top} main/><ResultCard profile={second}/></section><div className="result-actions"><button className="ghost" onClick={back}><ArrowLeft size={17}/> Voltar às escolhas</button><button className="primary" onClick={redo}><RotateCcw size={17}/> Refazer jornada</button></div><footer><SamarBadge variant="dark"/><span>Que sua história encontre um bom começo.</span></footer></main>}
 function App(){const [screen,setScreen]=useState('intro');const [answers,setAnswers]=useState(Array(12).fill(null));const [currentStep,setCurrentStep]=useState(0);return screen==='intro'?<Intro start={()=>setScreen('quiz')}/>:screen==='quiz'?<Quiz answers={answers} setAnswers={setAnswers} currentStep={currentStep} setCurrentStep={setCurrentStep} back={()=>setScreen('intro')} reveal={()=>setScreen('results')}/>:<Results answers={answers} redo={()=>{setAnswers(Array(12).fill(null));setCurrentStep(0);setScreen('quiz')}} back={()=>setScreen('quiz')}/>}
 createRoot(document.getElementById('root')).render(<App/>)
+
+// Verificação automática do fluxo (somente com ?selftest na URL; não afeta o uso normal).
+if(new URLSearchParams(location.search).has('selftest')){
+  (async()=>{
+    const log=[],errors=[]
+    window.addEventListener('error',e=>errors.push(e.message))
+    const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)]
+    const click=el=>el&&el.dispatchEvent(new MouseEvent('click',{bubbles:true,cancelable:true}))
+    const btn=t=>$$('button').find(b=>b.textContent.includes(t))
+    const wait=ms=>new Promise(r=>setTimeout(r,ms))
+    const assert=(cond,msg)=>log.push((cond?'PASS':'FAIL')+' :: '+msg)
+    await wait(400)
+    click(btn('Encontrar meu caminho'));await wait(60)
+    for(let i=0;i<12;i++){
+      assert($('.question-number')?.textContent.includes(String(i+1).padStart(2,'0')),`pergunta ${i+1} exibida`)
+      const choices=$$('.choice-button')
+      click(choices[i%choices.length]);await wait(40)
+      assert($$('.choice-button--selected').length===1,`pergunta ${i+1}: clicar na opção seleciona corretamente`)
+      if(i===1){
+        click(btn('Voltar'));await wait(40)
+        assert($('.question-number')?.textContent.includes('01')&&$$('.choice-button--selected').length===1,'Voltar retorna à pergunta 1 com resposta preservada')
+        click(btn('Continuar'));await wait(40)
+        assert($('.question-number')?.textContent.includes('02')&&$$('.choice-button--selected').length===1,'Continuar retorna à pergunta 2 com resposta preservada')
+      }
+      click(btn(i===11?'Revelar caminho':'Continuar'));await wait(40)
+    }
+    assert(document.body.textContent.includes('SUA BÚSSOLA APONTA PARA'),'responder a pergunta 12 e clicar em Revelar caminho abre os resultados')
+    assert($$('.result-card').length===2,'aparecem exatamente dois cards de classe')
+    click(btn('Voltar às escolhas'));await wait(40)
+    assert($('.question-number')?.textContent.includes('12')&&$$('.choice-button--selected').length===1,'Voltar às escolhas retorna à pergunta 12 preservando a resposta')
+    click(btn('Revelar caminho'));await wait(40)
+    click(btn('Refazer jornada'));await wait(40)
+    assert($('.question-number')?.textContent.includes('01')&&$$('.choice-button--selected').length===0,'Refazer jornada retorna à pergunta 1 com todas as respostas limpas')
+    assert(errors.length===0,'nenhum erro JavaScript durante o percurso'+(errors.length?': '+errors.join(' | '):''))
+    const pre=document.createElement('pre')
+    pre.id='selftest-report'
+    pre.textContent='SELFTEST INICIO\n'+log.join('\n')+'\nRESUMO: '+log.filter(l=>l.startsWith('PASS')).length+' PASS / '+log.filter(l=>l.startsWith('FAIL')).length+' FAIL\nSELFTEST FIM'
+    document.body.prepend(pre)
+  })()
+}
