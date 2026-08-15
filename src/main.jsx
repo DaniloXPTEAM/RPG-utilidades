@@ -13,8 +13,8 @@ import '@fontsource/cormorant-garamond/600.css'
 import '@fontsource/cormorant-garamond/600-italic.css'
 import './index.css'
 
-const fundoUrl='./oraculo-taverna.mp4'
-const posterUrl='./oraculo-taverna-poster.jpg'
+const fundoUrl='./oraculo-fundo.mp4'
+const posterUrl='./oraculo-fundo.jpg'
 const menuUrl='./oraculo-menu.jpg'
 const cenaUrl='./oraculo-cena.mp4'
 
