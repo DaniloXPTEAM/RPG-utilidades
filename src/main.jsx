@@ -13,8 +13,8 @@ import '@fontsource/cormorant-garamond/600.css'
 import '@fontsource/cormorant-garamond/600-italic.css'
 import './index.css'
 
-const loopUrl='./oraculo-loop.mp4'
-const posterUrl='./oraculo-poster.jpg'
+const fundoUrl='./oraculo-fundo.mp4'
+const posterUrl='./oraculo-fundo.jpg'
 const menuUrl='./oraculo-menu.jpg'
 const cenaUrl='./oraculo-cena.mp4'
 
@@ -45,7 +45,7 @@ function SamarBadge({variant='dark'}){return <div className={`samar-badge ${vari
 function Ornament(){return <div className="ornament" aria-hidden="true"><i/><b/><i/></div>}
 function SceneBg({soft}){return <>{soft
  ?<div className="scene-bg scene-bg--soft" aria-hidden="true"><img src={posterUrl} alt=""/></div>
- :<div className="scene-bg" aria-hidden="true"><video src={loopUrl} poster={posterUrl} autoPlay muted loop playsInline preload="auto"/></div>}<div className="scene-shade" aria-hidden="true"/></>}
+ :<div className="scene-bg" aria-hidden="true"><video src={fundoUrl} poster={posterUrl} autoPlay muted loop playsInline preload="auto"/></div>}<div className="scene-shade" aria-hidden="true"/></>}
 
 function Veil({label,close,wide,children}){
  return <div className="veil" role="dialog" aria-modal="true" aria-label={label} onClick={event=>{if(event.target===event.currentTarget) close()}}>
