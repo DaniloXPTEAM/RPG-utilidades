@@ -30,8 +30,19 @@ import seteiroImage from './assets/seteiro.webp'
 import vassaloImage from './assets/vassalo.webp'
 import usurpadorImage from './assets/usurpador.webp'
 import ermitaoImage from './assets/ermitao.webp'
+import inovadorImage from './assets/inovador.webp'
+import alquimistaImage from './assets/alquimista.webp'
+import ventanistaImage from './assets/ventanista.webp'
+import atletaImage from './assets/atleta.webp'
+import burguesImage from './assets/burgues.webp'
+import santoImage from './assets/santo.webp'
+import sentinelaImage from './assets/sentinela.webp'
+import miragemImage from './assets/miragem.webp'
+import cruzadoImage from './assets/cruzado.webp'
+import capangaImage from './assets/capanga.webp'
+import comandanteImage from './assets/comandante.webp'
 
-const generated = { guerreiro: guerreiroImage, barbaro: barbaroImage, bardo: bardoImage, bucaneiro: bucaneiroImage, cacador: cacadorImage, cavaleiro: cavaleiroImage, clerigo: clerigoImage, druida: druidaImage, arcanista: arcanistaImage, inventor: inventorImage, ladino: ladinoImage, lutador: lutadorImage, nobre: nobreImage, paladino: paladinoImage, samurai: samuraiImage, soldado: soldadoImage, mago: magoImage, feiticeiro: feiticeiroImage, bruxo: bruxoImage, medico: medicoImage, místico: misticoImage, pirata: pirataImage, treinador: treinadorImage, frade: fradeImage, necromante: necromanteImage, 'machado-pedra': machadoPedraImage, magimarcialista: magimarcialistaImage, duelista: duelistaImage, seteiro: seteiroImage, vassalo: vassaloImage, usurpador: usurpadorImage, ermitao: ermitaoImage }
+const generated = { guerreiro: guerreiroImage, barbaro: barbaroImage, bardo: bardoImage, bucaneiro: bucaneiroImage, cacador: cacadorImage, cavaleiro: cavaleiroImage, clerigo: clerigoImage, druida: druidaImage, arcanista: arcanistaImage, inventor: inventorImage, ladino: ladinoImage, lutador: lutadorImage, nobre: nobreImage, paladino: paladinoImage, samurai: samuraiImage, soldado: soldadoImage, mago: magoImage, feiticeiro: feiticeiroImage, bruxo: bruxoImage, medico: medicoImage, místico: misticoImage, pirata: pirataImage, treinador: treinadorImage, frade: fradeImage, necromante: necromanteImage, 'machado-pedra': machadoPedraImage, magimarcialista: magimarcialistaImage, duelista: duelistaImage, seteiro: seteiroImage, vassalo: vassaloImage, usurpador: usurpadorImage, ermitao: ermitaoImage, inovador: inovadorImage, alquimista: alquimistaImage, ventanista: ventanistaImage, atleta: atletaImage, burgues: burguesImage, santo: santoImage, sentinela: sentinelaImage, miragem: miragemImage, cruzado: cruzadoImage, capanga: capangaImage, comandante: comandanteImage }
 const fallbackPalettes = {
   ladino:['#15242a','#071012','#d2a15a'],lutador:['#3b2118','#120b08','#ebae59'],nobre:['#36212d','#120d12','#dbb56c'],paladino:['#3d3217','#12100a','#fff0a1'],samurai:['#421f1e','#13090a','#e1a45d'],soldado:['#293128','#0c100b','#d5ab65'],mago:['#1f2444','#080a18','#a9bcff'],feiticeiro:['#3c1831','#140713','#ef8a88'],bruxo:['#16372c','#07120d','#86e699'],medico:['#29333a','#0a1012','#d3c3a4'],místico:['#282143','#0e0a18','#bda5ff'],pirata:['#153442','#071014','#e5b55b'],
   treinador:['#2b3a2f','#0a0f0b','#d8b45e'],frade:['#3a3628','#0f0e09','#e8d9a0'],necromante:['#1c2e2a','#060d0a','#8fe6a8'],'machado-pedra':['#382a20','#0f0b07','#e0a45f'],magimarcialista:['#2f2440','#0d0914','#c9a0e8'],duelista:['#202f3f','#0a0f14','#8fd0e8'],seteiro:['#2c3524','#0c0f08','#b8d88f'],vassalo:['#303a44','#0c0f12','#c9d4e0'],usurpador:['#33202e','#0f090d','#e896c0'],ermitao:['#2b3a26','#0b0f08','#a8d88f'],inovador:['#2a3a44','#0a0f14','#8fd0e0'],alquimista:['#38261f','#100b08','#e0a45f'],ventanista:['#243544','#090e12','#a8dce8'],atleta:['#3a2418','#100a06','#e89a5f'],burgues:['#38301f','#100e08','#e0cf8f'],santo:['#3a3320','#100e08','#ffe9a8'],sentinela:['#24305e','#0a0e1a','#8fa8e8'],miragem:['#38301f','#100e08','#e0c08f'],cruzado:['#3a2f24','#100d08','#f0c8a0'],capanga:['#2c2838','#0c0a10','#c8a8e0'],comandante:['#2e352f','#0c0f0d','#d0c08f']
