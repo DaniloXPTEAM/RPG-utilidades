@@ -26,19 +26,19 @@ h1,h2,h3,p,figure{margin-top:0}
 /* ---------- cenário de fundo ---------- */
 .scene-bg{position:absolute;inset:0;overflow:hidden;z-index:0}
 .scene-bg img,.scene-bg video{width:100%;height:100%;object-fit:cover;object-position:center 38%;display:block}
-.scene-bg video{opacity:.96}
-.scene-bg img{animation:kenburns 52s ease-in-out infinite alternate}
-.scene-bg--soft img{animation-duration:75s;filter:saturate(.75) brightness(.5) blur(2px);opacity:.5}
+.scene-bg video{opacity:.96;transform:translateZ(0);backface-visibility:hidden}
+.scene-bg img{animation:kenburns 150s ease-in-out infinite alternate;transform:translateZ(0);backface-visibility:hidden;will-change:transform}
+.scene-bg--soft img{animation-duration:210s;filter:saturate(.75) brightness(.5) blur(2px);opacity:.5}
 .scene-shade{position:absolute;inset:0;z-index:1;pointer-events:none;
   background:
     linear-gradient(180deg,rgba(13,7,29,.82) 0%,rgba(13,7,29,.30) 18%,rgba(13,7,29,.16) 44%,rgba(13,7,29,.42) 72%,rgba(13,7,29,.9) 100%),
     radial-gradient(120% 65% at 50% 46%,transparent 46%,rgba(11,6,25,.62) 100%);}
 .quiz-shell .scene-shade,.results-shell .scene-shade{background:linear-gradient(180deg,rgba(13,7,29,.68),rgba(15,9,32,.86)),radial-gradient(120% 65% at 50% 40%,rgba(44,26,77,.26),rgba(11,6,25,.75))}
-@keyframes kenburns{from{transform:scale(1.05) translateY(-1.2%)}to{transform:scale(1.16) translateY(1.4%)}}
+@keyframes kenburns{from{transform:scale(1.03) translateY(-.35%)}to{transform:scale(1.06) translateY(.35%)}}
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes fade-quote{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-@keyframes mote{0%{transform:translateY(14vh) scale(.5);opacity:0}12%{opacity:.9}85%{opacity:.35}100%{transform:translateY(-18vh) scale(1.05);opacity:0}}
-@keyframes banner-glow{0%,100%{filter:drop-shadow(0 8px 26px rgba(0,0,0,.55)) drop-shadow(0 0 10px rgba(233,188,99,.25))}50%{filter:drop-shadow(0 10px 30px rgba(0,0,0,.55)) drop-shadow(0 0 32px rgba(232,121,249,.6))}}
+@keyframes mote{0%{transform:translate3d(0,14vh,0) scale(.5);opacity:0}12%{opacity:.55}85%{opacity:.22}100%{transform:translate3d(0,-18vh,0) scale(1.05);opacity:0}}
+@keyframes banner-glow{0%,100%{box-shadow:0 8px 26px rgba(0,0,0,.5),0 0 12px rgba(233,188,99,.22)}50%{box-shadow:0 10px 30px rgba(0,0,0,.5),0 0 26px rgba(232,121,249,.45)}}
 
 /* ---------- adornos ---------- */
 .ornament{display:flex;align-items:center;gap:.6rem;width:min(320px,52vw);margin:.65rem auto}
@@ -46,7 +46,7 @@ h1,h2,h3,p,figure{margin-top:0}
 .ornament i:last-child{background:linear-gradient(90deg,#caa45c99,transparent)}
 .ornament b{width:9px;height:9px;flex:none;background:linear-gradient(135deg,var(--gold-hi),var(--gold-deep));transform:rotate(45deg);box-shadow:0 0 10px rgba(233,188,99,.75)}
 .motes{position:absolute;inset:0;z-index:2;overflow:hidden;pointer-events:none}
-.motes span{position:absolute;width:var(--size);height:var(--size);border-radius:50%;background:radial-gradient(circle,#ffe9c4 0%,rgba(233,188,99,.55) 45%,transparent 72%);box-shadow:0 0 8px rgba(255,225,170,.9);opacity:0;animation:mote var(--dur) linear infinite;animation-delay:var(--delay)}
+.motes span{position:absolute;width:var(--size);height:var(--size);border-radius:50%;background:radial-gradient(circle,#ffe9c4 0%,rgba(233,188,99,.5) 45%,transparent 72%);box-shadow:0 0 6px rgba(255,225,170,.6);opacity:0;animation:mote var(--dur) linear infinite;animation-delay:var(--delay);will-change:transform,opacity}
 .eyebrow{font:700 .68rem var(--font-title);letter-spacing:.3em;color:var(--gold-hi);display:flex;gap:.55rem;align-items:center;justify-content:center;text-shadow:0 2px 12px rgba(0,0,0,.6)}
 
 /* moldura dourada da viewport */
@@ -79,7 +79,7 @@ h1,h2,h3,p,figure{margin-top:0}
 .wisdom blockquote{font:italic 500 1.08rem/1.45 var(--font-body);color:#efe2ff;margin:0 0 .35rem;animation:fade-quote .9s ease}
 .wisdom .ornament{width:min(150px,70%);margin:.35rem auto 0}
 
-.legend-banner{position:absolute;z-index:6;left:50%;transform:translateX(-50%);bottom:4.6rem;padding:1px;border:0;clip-path:var(--bevel-banner);background:var(--frame-gradient);animation:banner-glow 2.8s ease-in-out infinite;transition:transform .22s ease}
+.legend-banner{position:absolute;z-index:6;left:50%;transform:translateX(-50%);bottom:4.6rem;padding:1px;border:0;clip-path:var(--bevel-banner);background:var(--frame-gradient);animation:banner-glow 7s ease-in-out infinite;transition:transform .22s ease}
 .legend-cta:hover,.legend-cta:focus-visible{transform:translateX(-50%) translateY(-3px) scale(1.045)}
 .legend-banner span{display:flex;align-items:center;gap:.75rem;clip-path:var(--bevel-banner);background:linear-gradient(180deg,rgba(54,32,99,.97),rgba(26,15,48,.98));padding:.95rem 3rem;font:700 .96rem var(--font-title);letter-spacing:.3em;text-transform:uppercase;color:var(--gold-hi);text-shadow:0 0 18px rgba(233,188,99,.45);white-space:nowrap;transition:background .22s ease,color .22s ease}
 .legend-banner span svg{flex:none;color:var(--gold);transition:transform .22s ease}
@@ -238,5 +238,6 @@ h1,h2,h3,p,figure{margin-top:0}
   .veil-actions .primary,.veil-actions .ghost{flex:1;justify-content:center}
 }
 @media(prefers-reduced-motion:reduce){
-  .scene-bg img,.motes span,.legend-cta{animation:none!important}
+  .scene-bg img,.motes span,.legend-cta,.legend-banner{animation:none!important}
+  .motes{display:none}
 }

@@ -38,7 +38,7 @@ const WISDOMS=[
  'Em Arton, destino é o encontro entre coragem e propósito.',
  'Até os deuses já foram uma pergunta esperando resposta.'
 ]
-const MOTES=Array.from({length:18},(_,i)=>({left:`${(i*53)%97+1}%`,top:`${(i*37)%92+3}%`,'--delay':`${-(i*1.9)}s`,'--dur':`${10+(i%5)*2.6}s`,'--size':`${2+(i%3)*1.7}px`}))
+const MOTES=Array.from({length:10},(_,i)=>({left:`${(i*53)%97+1}%`,top:`${(i*37)%92+3}%`,'--delay':`${-(i*1.9)}s`,'--dur':`${22+(i%5)*5}s`,'--size':`${2+(i%3)*1.7}px`}))
 
 function SamarBadge({variant='dark'}){return <div className={`samar-badge ${variant}`}><svg viewBox="0 0 82 52" aria-hidden="true"><g fill="#c9b080"><circle cx="10" cy="10" r="5"/><circle cx="72" cy="10" r="5"/><circle cx="10" cy="42" r="5"/><circle cx="72" cy="42" r="5"/></g><g fill="none" stroke="#c7b79a" strokeWidth="3"><path d="M10 3v14M3 10h14M72 3v14M65 10h14M10 35v14M3 42h14M72 35v14M65 42h14"/></g><rect x="19" y="8" width="44" height="36" rx="4" fill="url(#screen)" stroke="#c7b79a" strokeWidth="3"/><text x="41" y="34" textAnchor="middle" fill="#ffe44d" fontSize="25" fontFamily="Georgia" fontWeight="bold">C</text><defs><radialGradient id="screen"><stop stopColor="#6eff8a"/><stop offset="1" stopColor="#0f8a2e"/></radialGradient></defs></svg><span>CRIADO POR SAMAR</span></div>}
 
