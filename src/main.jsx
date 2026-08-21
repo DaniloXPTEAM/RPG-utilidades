@@ -107,7 +107,6 @@ function Intro({start}){
    <Ornament/>
    <h1>Bússola de Arton</h1>
    <Ornament/>
-   <p className="tagline"><strong>O destino está em suas mãos.</strong><span>Prove seu valor em doze escolhas e descubra a classe que o aguarda em Arton.</span></p>
   </header>
 
   <div className="menu-col">
