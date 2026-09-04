@@ -45,7 +45,7 @@ function SamarBadge({variant='dark'}){return <div className={`samar-badge ${vari
 function Ornament(){return <div className="ornament" aria-hidden="true"><i/><b/><i/></div>}
 function SceneBg({soft}){return <>{soft
  ?<div className="scene-bg scene-bg--soft" aria-hidden="true"><img src={posterUrl} alt=""/></div>
- :<div className="scene-bg" aria-hidden="true"><video src={fundoUrl} poster={posterUrl} autoPlay muted loop playsInline preload="auto"/></div>}<div className="scene-shade" aria-hidden="true"/></>}
+ :<div className="scene-bg" aria-hidden="true"><video ref={el=>{if(el) el.playbackRate=0.1}} src={fundoUrl} poster={posterUrl} autoPlay muted loop playsInline preload="auto"/></div>}<div className="scene-shade" aria-hidden="true"/></>}
 
 function Veil({label,close,wide,children}){
  return <div className="veil" role="dialog" aria-modal="true" aria-label={label} onClick={event=>{if(event.target===event.currentTarget) close()}}>
